@@ -94,7 +94,7 @@ print(df.Fare.agg(
 
 print(df.embark_type.agg(
     maxembark_type  = 'max',
-    minembar_ktype  = 'min',
+    minembark_type  = 'min',
     ).to_markdown())
 
 print(df.Parch.agg(
