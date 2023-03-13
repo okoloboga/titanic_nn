@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -17,10 +11,6 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv('train.csv')
 df.head(5)
 
-
-# In[2]:
-
-
 ### Data conversion for network perception
 
 # Replacing NaN Age with mean
@@ -32,10 +22,6 @@ df = df.fillna({'Age':mean_age})
 df = df.fillna(method = "ffill")
 
 df.isnull().sum()
-
-
-# In[3]:
-
 
 # Replacing "Embarked" and "Sex" columns with integer  encoding
 
@@ -54,19 +40,10 @@ del df['Name']
 
 df.head(10)
 
-
-# In[4]:
-
-
 # Extract Survived feature as target array
 
 y = df['Survived']
 del df['Survived']
- 
-
-
-# In[5]:
-
 
 # Convert all to [0 - 1] 
 
@@ -76,10 +53,6 @@ for i in df.columns:
     df[i] = (df[i] - b) / a
     
 df.head(10)
-
-
-# In[7]:
-
 
 # Train/test splitting
 
@@ -100,10 +73,6 @@ model.compile(optimizer="Adam",
              loss="binary_crossentropy",
              metrics=["accuracy"])
 
-
-# In[8]:
-
-
 # Fit it!
 
 history = model.fit(x_train,
@@ -114,10 +83,6 @@ history = model.fit(x_train,
 
 history_dict = history.history
 history_dict.keys()
-
-
-# In[9]:
-
 
 # Visualization of training process, epoch/loss
 
@@ -147,10 +112,6 @@ plt.legend()
 plt.show()
 
 
-
-# In[10]:
-
-
 # Prediction and accuracy
 
 pred = model.predict(x_test)
@@ -158,11 +119,7 @@ test_loss, test_acc = model.evaluate(x_test, y_test)
 print(f"test_acc: {test_acc}")
 
 
-# In[11]:
-
-
 # Optimal metric of success
 
 p = np.around(pred)
 recall_score(y_test, p)
-
